@@ -1,8 +1,9 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const SECRET_KEY =
-  "b36K5f2xwNvatu4GYYKSDilI6fygp9VpMix4XthfnaxpcTshFJ7th2RzC7dd";
+  "0f5212e130788a73565f37122d569d0d58d205602bc064cfa8d8fd98f4845c2c1d4e19847516b9e17ed7c7217a6f5c38c545c02a3bc66360467675cd";
 
 const app = express();
 
