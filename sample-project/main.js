@@ -25,7 +25,6 @@ import {
 
 import "ckeditor5/ckeditor5.css";
 import "ckeditor5-premium-features/ckeditor5-premium-features.css";
-
 import "./style.css";
 
 const LICENSE_KEY =
@@ -87,14 +86,7 @@ const editorConfig = {
     editorConfig: {
       extraPlugins: [Bold, Italic, Mention],
       mention: {
-        feeds: [
-          {
-            marker: "@",
-            feed: [
-              /* See: https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html#comments-with-mentions */
-            ],
-          },
-        ],
+        feeds: [],
       },
     },
   },
@@ -102,14 +94,7 @@ const editorConfig = {
     "<h2>Congratulations on setting up CKEditor 5! 🎉</h2>\n<p>\n\tYou've successfully created a CKEditor 5 project. This powerful text editor\n\twill enhance your application, enabling rich text editing capabilities that\n\tare customizable and easy to use.\n</p>\n<h3>What's next?</h3>\n<ol>\n\t<li>\n\t\t<strong>Integrate into your app</strong>: time to bring the editing into\n\t\tyour application. Take the code you created and add to your application.\n\t</li>\n\t<li>\n\t\t<strong>Explore features:</strong> Experiment with different plugins and\n\t\ttoolbar options to discover what works best for your needs.\n\t</li>\n\t<li>\n\t\t<strong>Customize your editor:</strong> Tailor the editor's\n\t\tconfiguration to match your application's style and requirements. Or\n\t\teven write your plugin!\n\t</li>\n</ol>\n<p>\n\tKeep experimenting, and don't hesitate to push the boundaries of what you\n\tcan achieve with CKEditor 5. Your feedback is invaluable to us as we strive\n\tto improve and evolve. Happy editing!\n</p>\n<h3>Helpful resources</h3>\n<p>\n\t<i>An editor without the </i><code>Link</code>\n\t<i>plugin? That's brave! We hope the links below will be useful anyway </i\n\t>😉\n</p>\n<ul>\n\t<li>\n\t\t📝 Trial sign up: https://orders.ckeditor.com/trial/premium-features,\n\t</li>\n\t<li>\n\t\t📕 Documentation:\n\t\thttps://ckeditor.com/docs/ckeditor5/latest/installation/index.html,\n\t</li>\n\t<li>\n\t\t⭐️ GitHub (star us if you can!): https://github.com/ckeditor/ckeditor5,\n\t</li>\n\t<li>🏠 CKEditor Homepage: https://ckeditor.com,</li>\n\t<li>🧑‍💻 CKEditor 5 Demos: https://ckeditor.com/ckeditor-5/demo/</li>\n</ul>\n<h3>Need help?</h3>\n<p>\n\tSee this text, but the editor is not starting up? Check the browser's\n\tconsole for clues and guidance. It may be related to an incorrect license\n\tkey if you use premium features or another feature-related requirement. If\n\tyou cannot make it work, file a GitHub issue, and we will help as soon as\n\tpossible!\n</p>\n",
   licenseKey: LICENSE_KEY,
   mention: {
-    feeds: [
-      {
-        marker: "@",
-        feed: [
-          /* See: https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html */
-        ],
-      },
-    ],
+    feeds: [],
   },
   placeholder: "Type or paste your content here!",
   presenceList: {
@@ -131,74 +116,4 @@ const editorConfig = {
   },
 };
 
-configUpdateAlert(editorConfig);
-
 ClassicEditor.create(document.querySelector("#editor"), editorConfig);
-
-/**
- * This function exists to remind you to update the config needed for premium features.
- * The function can be safely removed. Make sure to also remove call to this function when doing so.
- */
-function configUpdateAlert(config) {
-  if (configUpdateAlert.configUpdateAlertShown) {
-    return;
-  }
-
-  const isModifiedByUser = (currentValue, forbiddenValue) => {
-    if (currentValue === forbiddenValue) {
-      return false;
-    }
-
-    if (currentValue === undefined) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const valuesToUpdate = [];
-
-  configUpdateAlert.configUpdateAlertShown = true;
-
-  if (!isModifiedByUser(config.licenseKey, "<YOUR_LICENSE_KEY>")) {
-    valuesToUpdate.push("LICENSE_KEY");
-  }
-
-  if (
-    !isModifiedByUser(
-      config.collaboration?.channelId,
-      "<YOUR_UNIQUE_CHANNEL_PER_DOCUMENT>"
-    )
-  ) {
-    valuesToUpdate.push("UNIQUE_CHANNEL_PER_DOCUMENT");
-  }
-
-  if (
-    !isModifiedByUser(
-      config.cloudServices?.tokenUrl,
-      "<YOUR_CLOUD_SERVICES_TOKEN_URL>"
-    )
-  ) {
-    valuesToUpdate.push("CLOUD_SERVICES_TOKEN_URL");
-  }
-
-  if (
-    !isModifiedByUser(
-      config.cloudServices?.webSocketUrl,
-      "<YOUR_CLOUD_SERVICES_WEBSOCKET_URL>"
-    )
-  ) {
-    valuesToUpdate.push("CLOUD_SERVICES_WEBSOCKET_URL");
-  }
-
-  if (valuesToUpdate.length) {
-    window.alert(
-      [
-        "Please update the following values in your editor config",
-        "in order to receive full access to the Premium Features:",
-        "",
-        ...valuesToUpdate.map((value) => ` - ${value}`),
-      ].join("\n")
-    );
-  }
-}

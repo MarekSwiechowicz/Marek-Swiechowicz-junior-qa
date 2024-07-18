@@ -1,9 +1,9 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-const accessKey =
-  "b36K5f2xwNvatu4GYYKSDilI6fygp9VpMix4XthfnaxpcTshFJ7th2RzC7dd";
-const environmentId = "g64epc2eSkpIRm7jaWRp";
+const accessKey = process.env.ACCESS_KEY;
+const environmentId = process.env.ENVIRONMENT_ID;
 
 const app = express();
 
@@ -38,6 +38,4 @@ app.get("/token", (req, res) => {
   res.send(token);
 });
 
-app.listen(1337, () =>
-  console.log("Token endpoint listening on port 1337 serv")
-);
+app.listen(1337, () => console.log("Token endpoint listening on port 1337"));
