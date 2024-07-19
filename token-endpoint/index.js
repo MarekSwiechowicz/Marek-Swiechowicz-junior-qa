@@ -1,27 +1,26 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const cors = require("cors");
+
+const accessKey =
+  "x9qDq9KQbvbUSJZ5k7U6Egkre7pPIp94EcRBFXciWnQ8kYOejJywZauwXyvd";
+const environmentId = "n0b5gWL0dOl92j33K8ki";
 
 const app = express();
-const port = 1337;
 
-const SECRET_KEY =
-  "0f5212e130788a73565f37122d569d0d58d205602bc064cfa8d8fd98f4845c2c1d4e19847516b9e17ed7c7217a6f5c38c545c02a3bc66360467675cd";
-const ENVIRONMENT_ID = "g64epc2eSkpIRm7jaWRp";
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET");
 
-app.use(cors());
+  next();
+});
 
-app.get("/token", (req, res) => {
-  const currentTime = Math.floor(Date.now() / 1000);
-
+app.get("/", (req, res) => {
   const payload = {
-    aud: ENVIRONMENT_ID,
-    iat: currentTime,
-    sub: "exampleuser",
+    aud: environmentId,
+    sub: "user-123",
     user: {
-      email: "example@cksource.com",
-      name: "A User",
-      avatar: "http://example.com/avatars/john.png",
+      email: "joe.doe@example.com",
+      name: "Joe Doe",
     },
     auth: {
       collaboration: {
@@ -30,15 +29,14 @@ app.get("/token", (req, res) => {
         },
       },
     },
-    exp: currentTime + 24 * 60 * 60,
   };
 
-  const token = jwt.sign(payload, SECRET_KEY);
+  const result = jwt.sign(payload, accessKey, {
+    algorithm: "HS256",
+    expiresIn: "24h",
+  });
 
-  res.json({ token });
+  res.send(result);
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Token endpoint running at http://localhost:${port}`);
-});
+app.listen(8080, () => console.log("Listening on port 8080"));
