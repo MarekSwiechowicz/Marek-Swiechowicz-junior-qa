@@ -30,7 +30,7 @@ import "./style.css";
 const LICENSE_KEY =
   "OFplNStwcW1RbVdnd2tleFFDazMzeG9wN2YxSy80SDVGRnlseGFXckJ0Q0NpajIzYzlFbVZqM0RqR2gzSlE9PS1NakF5TkRBNE1UWT0=";
 const UNIQUE_CHANNEL_PER_DOCUMENT = "document_1";
-const CLOUD_SERVICES_TOKEN_URL = "http://localhost:8080/";
+const CLOUD_SERVICES_TOKEN_URL = "http://localhost:1337/";
 const CLOUD_SERVICES_WEBSOCKET_URL = "wss://113841.cke-cs.com/ws";
 
 const editorConfig = {
