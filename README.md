@@ -57,14 +57,4 @@ This PDF document provides detailed test cases for each REST API endpoint handle
 
 ## How to Run the Applications
 
-### CKEditor 5 Collaboration Sample
-
-1. Open the `ckeditor5-collaboration-sample/index.html` file in your browser to see CKEditor 5 in action.
-
-### Token Endpoint
-
-1. Navigate to the `token-endpoint/` folder.
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+the setup is simple enough message maswiecho@gmail.com if you need help I will provide you will all te necesary info
